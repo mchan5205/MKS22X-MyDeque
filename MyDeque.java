@@ -18,6 +18,10 @@ public class MyDeque<E>{
     return size;
   }
   public void addFirst(E element){
-
+    start = start - 1;
+    if (start < 0){
+      start = data.length - 1;
+    }
+    data[start] = element;
   }
 }
