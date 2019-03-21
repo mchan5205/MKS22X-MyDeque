@@ -24,4 +24,17 @@ public class MyDeque<E>{
     }
     data[start] = element;
   }
+  public void addLast(E element){
+    end = end + 1;
+    if (end == data.length){
+      end = 0;
+    }
+    data[end] = element;
+  }
+  public E getFirst(){
+    return data[start];
+  }
+  public E getLast(){
+    return data[end];
+  }
 }
