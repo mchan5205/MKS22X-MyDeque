@@ -23,6 +23,7 @@ public class MyDeque<E>{
       start = data.length - 1;
     }
     data[start] = element;
+    size += 1;
   }
   public void addLast(E element){
     end = end + 1;
@@ -30,6 +31,7 @@ public class MyDeque<E>{
       end = 0;
     }
     data[end] = element;
+    size += 1;
   }
   public E getFirst(){
     return data[start];
@@ -40,11 +42,13 @@ public class MyDeque<E>{
   public E removeFirst(){
     int temp = data[start];
     start += 1;
+    size -= 1;
     return temp;
   }
   public E removeLast(){
     int temp = data[end];
     end -= 1;
+    size -= 1;
     return temp;
   }
   public String toString(){
@@ -86,6 +90,6 @@ public class MyDeque<E>{
     }
     start = 0;
     end = k - 1;
-    data = newary; 
+    data = newary;
   }
 }
