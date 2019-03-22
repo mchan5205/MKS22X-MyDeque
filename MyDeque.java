@@ -42,4 +42,27 @@ public class MyDeque<E>{
     start += 1;
     return temp;
   }
+  public E removeLast(){
+    int temp = data[end];
+    end -= 1;
+    return temp;
+  }
+  public String toString(){
+    String y = "{";
+    if (start > end){
+      for (int i = start; i < data.length; i++){
+        y += data[i] + " ";
+      }
+      for (int o = 0; o <= end; o++){
+        y += data[o] + " ";
+      }
+    }
+    else{
+      for (int i = start; i <= end; i++){
+        y += data[i] + " ";
+      }
+    }
+    y += "}";
+    return y;
+  }
 }
