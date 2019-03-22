@@ -65,4 +65,27 @@ public class MyDeque<E>{
     y += "}";
     return y;
   }
+  private void resize(){
+    E[] newary = (E[])new Object[data.length * 2 + 1];
+    int k = 0;
+    if (start > end){
+      for (int i = start; i < data.length; i++){
+        newary[k] = data[i];
+        k++;
+      }
+      for (int o = 0; o <= end; o++){
+        newary[k] = data[o];
+        k++;
+      }
+    }
+    else{
+      for (int i = start; i <= end; i++){
+        newary[k] = data[i];
+        k++;
+      }
+    }
+    start = 0;
+    end = k - 1;
+    data = newary; 
+  }
 }
