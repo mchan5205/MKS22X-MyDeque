@@ -18,6 +18,9 @@ public class MyDeque<E>{
     return size;
   }
   public void addFirst(E element){
+    if (size == data.length){
+      resize();
+    }
     start = start - 1;
     if (start < 0){
       start = data.length - 1;
@@ -26,6 +29,9 @@ public class MyDeque<E>{
     size += 1;
   }
   public void addLast(E element){
+    if (size == data.length){
+      resize();
+    }
     end = end + 1;
     if (end == data.length){
       end = 0;
@@ -40,13 +46,13 @@ public class MyDeque<E>{
     return data[end];
   }
   public E removeFirst(){
-    int temp = data[start];
+    E temp = data[start];
     start += 1;
     size -= 1;
     return temp;
   }
   public E removeLast(){
-    int temp = data[end];
+    E temp = data[end];
     end -= 1;
     size -= 1;
     return temp;
@@ -58,12 +64,16 @@ public class MyDeque<E>{
         y += data[i] + " ";
       }
       for (int o = 0; o <= end; o++){
-        y += data[o] + " ";
+        if (data[o] != null){
+          y += data[o] + " ";
+        }
       }
     }
     else{
-      for (int i = start; i <= end; i++){
-        y += data[i] + " ";
+      if (start - end != 0){
+        for (int i = start; i <= end; i++){
+          y += data[i] + " ";
+        }
       }
     }
     y += "}";
