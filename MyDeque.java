@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -18,7 +19,7 @@ public class MyDeque<E>{
     return size;
   }
   public void addFirst(E element){
-    if (size == data.length){
+    if (size == data.length - 1){
       resize();
     }
     start = start - 1;
@@ -29,7 +30,7 @@ public class MyDeque<E>{
     size += 1;
   }
   public void addLast(E element){
-    if (size == data.length){
+    if (size == data.length - 1){
       resize();
     }
     end = end + 1;
@@ -79,7 +80,7 @@ public class MyDeque<E>{
     y += "}";
     return y;
   }
-  private void resize(){
+  public void resize(){
     E[] newary = (E[])new Object[data.length * 2 + 1];
     int k = 0;
     if (start > end){
@@ -88,7 +89,9 @@ public class MyDeque<E>{
         k++;
       }
       for (int o = 0; o <= end; o++){
-        newary[k] = data[o];
+        if (data[o] != null){
+          newary[k] = data[o];
+        }
         k++;
       }
     }
@@ -102,4 +105,17 @@ public class MyDeque<E>{
     end = k - 1;
     data = newary;
   }
+  public static void main(String[] args){
+		MyDeque<Integer> a = new MyDeque<Integer>(3);
+		System.out.println(a);
+		a.addLast(5);
+    a.addLast(5);
+    a.addLast(5);
+    a.addLast(5);
+    a.addLast(5);;
+    a.addLast(5);
+		System.out.println(a);
+    a.resize();
+    System.out.println(a);
+	}
 }
