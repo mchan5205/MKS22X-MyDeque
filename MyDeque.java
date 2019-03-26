@@ -19,6 +19,9 @@ public class MyDeque<E>{
     return size;
   }
   public void addFirst(E element){
+    if (element == null){
+        throw new NullPointerException();
+    }
     if (size == data.length - 1){
       resize();
     }
@@ -30,6 +33,9 @@ public class MyDeque<E>{
     size += 1;
   }
   public void addLast(E element){
+    if (element == null){
+        throw new NullPointerException();
+    }
     if (size == data.length - 1){
       resize();
     }
@@ -41,19 +47,39 @@ public class MyDeque<E>{
     size += 1;
   }
   public E getFirst(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
     return data[start];
   }
   public E getLast(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
     return data[end];
   }
   public E removeFirst(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
+    if (size == 1 && start == 0){
+      return removeLast();
+    }
     E temp = data[start];
+    data[start] = null;
     start += 1;
     size -= 1;
     return temp;
   }
   public E removeLast(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
+    if (size == 1 && end == 0){
+      return removeFirst();
+    }
     E temp = data[end];
+    data[end] = null;
     end -= 1;
     size -= 1;
     return temp;
@@ -62,7 +88,9 @@ public class MyDeque<E>{
     String y = "{";
     if (start > end){
       for (int i = start; i < data.length; i++){
-        y += data[i] + " ";
+        if (data[i] != null){
+          y += data[i] + " ";
+        }
       }
       for (int o = 0; o <= end; o++){
         if (data[o] != null){
@@ -73,7 +101,9 @@ public class MyDeque<E>{
     else{
       if (start - end != 0){
         for (int i = start; i <= end; i++){
-          y += data[i] + " ";
+          if (data[i] != null){
+            y += data[i] + " ";
+          }
         }
       }
     }
@@ -108,12 +138,8 @@ public class MyDeque<E>{
   public static void main(String[] args){
 		MyDeque<Integer> a = new MyDeque<Integer>(3);
 		System.out.println(a);
-		a.addLast(5);
     a.addLast(5);
-    a.addLast(5);
-    a.addLast(5);
-    a.addLast(5);;
-    a.addLast(5);
+		a.removeFirst();
 		System.out.println(a);
     a.resize();
     System.out.println(a);
